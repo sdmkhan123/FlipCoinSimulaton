@@ -1,17 +1,27 @@
 #! /bin/bash -x
 
-read num
+MAX_COUNT=21
 HeadCount=0
 TailCount=0
-for (( i=0; i<n; i++ ))
+while [ $HeadCount -lt $MAX_COUNT -a $TailCount -lt $MAX_COUNT ]
 do
 	Flip=$((RANDOM%2))
 	if [ $Flip -eq 1 ]
 	then
-		((HeadCount++))
+		(( HeadCount++ ))
 	else
-		((TailCount++))
+		(( TailCount++ ))
 	fi
 done
-echo "Number of Head won:" $HeadCount
-echo "Number of Tail won:" $TailCount
+
+if [ $HeadCount -gt $TailCount ]
+then
+	c=$(( HeadCount - TailCount ))
+	echo "Head won by :" $c
+elif [ $HeadCount -lt $TailCount ]
+then
+	c=$(( TailCount - HeadCount ))
+	echo "Tail won by :" $c
+else
+	echo "Tie"
+fi
