@@ -23,5 +23,14 @@ then
 	c=$(( TailCount - HeadCount ))
 	echo "Tail won by :" $c
 else
-	echo "Tie"
+	for (( i=0; i<2; i++ ))
+	do
+        	Flip=$((RANDOM%2))
+        	if [ $Flip -eq 1 ]
+        	then
+        	        (( HeadCount++ ))
+        	else
+        	        (( TailCount++ ))
+        	fi
+	done
 fi
